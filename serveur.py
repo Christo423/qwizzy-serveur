@@ -21,7 +21,7 @@ def reponse():
 
 @app.route('/rec', methods=['GET'])
 def rec():
-    return jsonify("reponse": rp)
+    return jsonify("reponse": str(rp))
      
 # ----------- Démarrage serveur -----------
 
