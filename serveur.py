@@ -1,3 +1,4 @@
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import psycopg2
@@ -13,6 +14,7 @@ rp = ""
 
 @app.route('/reponse', methods=['POST'])
 def reponse():
+    global rp
     data = request.get_json()
     if data is None :
         return jsonify({"error": "aucune donnée reçue"}), 400
@@ -21,7 +23,7 @@ def reponse():
 
 @app.route('/rec', methods=['GET'])
 def rec():
-    return jsonify("reponse": str(rp))
+    return jsonify({"reponse": rp})
      
 # ----------- Démarrage serveur -----------
 
