@@ -22,7 +22,11 @@ def questionnaire():
 
 # genere la clee a 4 chiffres
 def genererClee() :
-    nombres = [random.randint(0, 9) for _ in range(4)]
+    nombres = ""
+    for _ in range(4) :
+        a = random.randint(0, 9)
+        nombres = nombres + str(a)
+        
     return nombres
     
 #envoie la clee a 4 chiffres
