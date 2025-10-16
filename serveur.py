@@ -14,6 +14,7 @@ rp = ""
 
 @app.route('/reponse', methods=['POST'])
 def reponse():
+    print("christo")
     global rp
     data = request.get_json()
     if data is None :
