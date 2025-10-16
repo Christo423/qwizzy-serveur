@@ -4,27 +4,32 @@ from flask_cors import CORS
 import psycopg2
 import hashlib
 import os
+import random
 
 app = Flask(__name__)
 CORS(app)
 
 # ----------- Routes -----------
+global questions_liste
 
-rp = ""
-
-@app.route('/reponse', methods=['POST'])
-def reponse():
-    print("christo")
-    global rp
+# recupere le questionnaire 
+@app.route('/questionnaire', methods=['POST'])
+def questionnaire():
     data = request.get_json()
     if data is None :
         return jsonify({"error": "aucune donnée reçue"}), 400
-    rp = data.get("reponse")
-    return jsonify({"message": "oui"}), 201
+    questions_liste = data.get("questions")
 
-@app.route('/rec', methods=['GET'])
-def rec():
-    return jsonify({"reponse": rp})
+# genere la clee a 4 chiffres
+def genererClee() :
+    nombres = [random.randint(0, 9) for _ in range(4)]
+    return nombres
+    
+#envoie la clee a 4 chiffres
+@app.route('/clee', methods=['GET'])
+def clee():
+    nbr = genererClee()
+    return jsonify({"reponse": nbr})
      
 # ----------- Démarrage serveur -----------
 
