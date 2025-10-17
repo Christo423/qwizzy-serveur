@@ -19,6 +19,7 @@ def questionnaire():
     if data is None :
         return jsonify({"error": "aucune donnée reçue"}), 400
     questions_liste = data.get("questions")
+    print("✅ donnes", questions_liste, flush=True)
     questions_recu = True
 
 # genere la clee a 4 chiffres
