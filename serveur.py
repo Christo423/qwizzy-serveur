@@ -11,6 +11,7 @@ CORS(app)
 
 # ----------- Routes -----------
 questions_liste = []
+joueurs_liste = ["christo", "daniel", "blessing"]
 
 # recupere le questionnaire 
 @app.route('/questionnaire', methods=['POST'])
@@ -42,6 +43,22 @@ def clee():
 @app.route('/recupQuestions', methods=['GET'])
 def recupQuestions():
     return jsonify({"questions": questions_liste})
+
+# ajouter un joueur
+@app.route('/ajouter_joueur', methods=['POST'])
+def ajouter_joueur():
+    global joueurs_liste
+    data = request.get_json()
+    if data :
+        pseudo = data.get("pseudo")
+        joueurs_liste.append(str(pseudo))
+        print("✅ joueur " + str(pseudo), flush=True)
+    return jsonify({"status": "ok"})
+
+# envoie la liste des joueurs
+@app.route('/joueurs', methods=['GET'])
+def joueurs():
+    return jsonify({"joueurs": joueurs_liste})
 # ----------- Démarrage serveur -----------
 
 if __name__ == '__main__':
