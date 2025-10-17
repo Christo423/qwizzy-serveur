@@ -11,7 +11,7 @@ CORS(app)
 
 # ----------- Routes -----------
 global questions_liste
-
+questions_recu = False
 # recupere le questionnaire 
 @app.route('/questionnaire', methods=['POST'])
 def questionnaire():
@@ -19,6 +19,7 @@ def questionnaire():
     if data is None :
         return jsonify({"error": "aucune donnée reçue"}), 400
     questions_liste = data.get("questions")
+    questions_recu = True
 
 # genere la clee a 4 chiffres
 def genererClee() :
@@ -35,6 +36,11 @@ def clee():
     nbr = genererClee()
     return jsonify({"reponse": nbr})
      
+#envoie les questions 
+@app.route('/recupQuestions', methods=['GET'])
+def recupQuestions():
+    if questions_recu : 
+        return jsonify({"questions": questions_liste})
 # ----------- Démarrage serveur -----------
 
 if __name__ == '__main__':
