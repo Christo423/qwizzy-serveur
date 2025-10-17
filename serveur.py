@@ -19,6 +19,7 @@ def questionnaire():
     if data :
         questions_liste = data.get("questions")
         print("✅ donnes " + str(questions_liste), flush=True)
+    return jsonify({"status": "ok"})
 
 # genere la clee a 4 chiffres
 def genererClee() :
