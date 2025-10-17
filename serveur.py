@@ -40,7 +40,7 @@ def clee():
 #envoie les questions 
 @app.route('/recupQuestions', methods=['GET'])
 def recupQuestions():
-    if questions_list :
+    if questions_liste :
         return jsonify({"questions": questions_liste})
     else :
         return jsonify({"questions": "aucune donnes"})
