@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app)
 
 # ----------- Routes -----------
-global questions_liste
+global questions_liste = ""
 
 # recupere le questionnaire 
 @app.route('/questionnaire', methods=['POST'])
@@ -39,7 +39,10 @@ def clee():
 #envoie les questions 
 @app.route('/recupQuestions', methods=['GET'])
 def recupQuestions():
-    return jsonify({"questions": questions_liste})
+    if questions_liste != "" :
+        return jsonify({"questions": questions_liste})
+    else :
+        return jsonify({"questions": "aucune donnes"})
 # ----------- Démarrage serveur -----------
 
 if __name__ == '__main__':
