@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app)
 
 # ----------- Routes -----------
-global questions_liste = ""
+global questions_liste
 
 # recupere le questionnaire 
 @app.route('/questionnaire', methods=['POST'])
