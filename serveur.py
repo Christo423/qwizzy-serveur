@@ -50,6 +50,7 @@ def ajouter_joueur():
     global joueurs_liste
     data = request.get_json()
     mdp = data.get("clee")
+    print("✅ " + str(mdp) + " / " + str(nbr), flush=True)
     if str(mdp) == str(nbr) :
         pseudo = data.get("pseudo")
         joueurs_liste.append(str(pseudo))
