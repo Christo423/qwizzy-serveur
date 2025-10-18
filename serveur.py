@@ -12,7 +12,7 @@ CORS(app)
 # ----------- Routes -----------
 questions_liste = []
 joueurs_liste = ["christo", "daniel", "blessing"]
-
+nbr = 0
 # recupere le questionnaire 
 @app.route('/questionnaire', methods=['POST'])
 def questionnaire():
@@ -49,7 +49,8 @@ def recupQuestions():
 def ajouter_joueur():
     global joueurs_liste
     data = request.get_json()
-    if data :
+    mdp = data.get("clee")
+    if str(mdp) == str(nbr) :
         pseudo = data.get("pseudo")
         joueurs_liste.append(str(pseudo))
         print("✅ joueur " + str(pseudo), flush=True)
