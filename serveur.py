@@ -53,8 +53,11 @@ def ajouter_joueur():
     if str(mdp) == str(nbr) :
         pseudo = data.get("pseudo")
         joueurs_liste.append(str(pseudo))
-        print("✅ joueur " + str(pseudo), flush=True)
-    return jsonify({"status": "ok"})
+        print("✅ joueur " + str(pseudo) + "connecte", flush=True)
+        return jsonify({"status": "connecte"})
+    else :
+        print("✅ non connecte", flush=True)
+        return jsonify({"status": "non connecte"})
 
 # envoie la liste des joueurs
 @app.route('/joueurs', methods=['GET'])
