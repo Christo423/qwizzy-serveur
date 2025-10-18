@@ -11,7 +11,7 @@ CORS(app)
 
 # ----------- Routes -----------
 questions_liste = []
-joueurs_liste = ["christo", "daniel", "blessing"]
+joueurs_liste = []
 nbr = 0
 # recupere le questionnaire 
 @app.route('/questionnaire', methods=['POST'])
@@ -53,7 +53,8 @@ def ajouter_joueur():
     print("✅ " + str(mdp) + " / " + str(nbr), flush=True)
     if str(mdp) == str(nbr) :
         pseudo = data.get("pseudo")
-        joueurs_liste.append(str(pseudo))
+        lst = [str(pseudo), 0]
+        joueurs_liste.append(lst)
         print("✅ joueur " + str(pseudo) + "connecte", flush=True)
         return jsonify({"status": "connecte"})
     else :
