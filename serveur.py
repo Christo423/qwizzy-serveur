@@ -13,6 +13,9 @@ CORS(app)
 questions_liste = []
 joueurs_liste = []
 nbr = 0
+etat = ""
+nbr_questions = 0
+
 # recupere le questionnaire 
 @app.route('/questionnaire', methods=['POST'])
 def questionnaire():
@@ -65,6 +68,25 @@ def ajouter_joueur():
 @app.route('/joueurs', methods=['GET'])
 def joueurs():
     return jsonify({"joueurs": joueurs_liste})
+
+# recois l'etat du questionnaire
+@app.route('/env_etat', methods=['POST'])
+def env_etat() :
+    global etat
+    global nbr_questions
+    data = request.get_json()
+    etat = data.get("etat_qst")
+    nbr_questions = data.get("nbr_qst")
+    print("✅ etat questionnaire recu " + str(etat) + " : " + str(nbr_questions), flush=True)
+    return jsonify({"status": "ok"})
+
+# renvoi l'etat du questionnaire
+@app.route('/rec_etat', methods=['GET'])
+def rec_etat() :
+    global etat
+    global nbr_questions
+    print("✅ etat questionnaire envoye " + str(etat) + " : " + str(nbr_questions), flush=True)
+    return jsonify({"etat": etat, "nbr_qst": nbr_questions})
 # ----------- Démarrage serveur -----------
 
 if __name__ == '__main__':
