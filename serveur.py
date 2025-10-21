@@ -97,7 +97,7 @@ def maj_score() :
     pseudo = data.get("pseudo")
     print("✅ joueur " + str(pseudo) + " + " + str(point) + " points", flush=True)
 
-    for joueur in range(joueurs_liste) :
+    for joueur in joueurs_liste :
         if joueur[0] == pseudo :
             joueur[1] = joueur[1] + point
     return jsonify({"status": "ok"})
