@@ -87,6 +87,20 @@ def rec_etat() :
     global nbr_questions
     print("✅ etat questionnaire envoye " + str(etat) + " : " + str(nbr_questions), flush=True)
     return jsonify({"etat": etat, "nbr_qst": nbr_questions})
+
+# met a jour le score du joueur
+@app.route('/maj_score', methods=['POST'])
+def maj_score() :
+    global joueurs_liste
+    point = 100
+    data = request.get_json()
+    pseudo = data.get("pseudo")
+    print("✅ joueur " + str(pseudo) + " + " + str(point) + " points", flush=True)
+
+    for joueur in range(joueurs_liste) :
+        if joueur[0] == pseudo :
+            joueur[1] = joueur[1] + point
+    return jsonify({"status": "ok"})
 # ----------- Démarrage serveur -----------
 
 if __name__ == '__main__':
