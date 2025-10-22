@@ -38,6 +38,7 @@ def genererClee() :
 #envoie la clee a 4 chiffres
 @app.route('/clee', methods=['GET'])
 def clee():
+    global nbr
     nbr = genererClee()
     print("✅ clee" + str(nbr), flush=True)
     return jsonify({"reponse": nbr})
